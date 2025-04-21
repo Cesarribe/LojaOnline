@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="https://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="https://d1muf25xaso8hp.cloudfront.net/https://img.criativodahora.com.br/2023/10/MjMvMTAvMjAyMyAwOGg0Ng==65365d2952196.jpeg?w=1000&h=&auto=compress&dpr=1&fit=max" width="30"/>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sistema de Vendas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <form action="/salvarCidade" th:object="${cidade}" method="POST">
+        <div class="form-group">
+
+            <label>ID:</label>
+            <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
+
+            <label>Nome da Cidade:</label>
+            <input type="text" required class="form-control" id="nome" th:field="*{nome}">
+
+            <label>CEP:</label>
+            <input type="text" required class="form-control" id="cep" th:field="*{cep}">
+
+            <label>Estado:</label>
+            <select th:field="*{estado}" class="form-control">
+                <option th:each="est : ${listaEstados}" th:value="${est.id}" th:text="${est.nome}"></option>
+
+
+            </select>
+
+        </div>
+
+        <a><button type="submit" class="btn btn-primary"> <i class="fa-solid fa-floppy-disk"></i> Salvar </button></a>
+        <a class="btn btn-danger" href="/administrativo"><i class="fa-solid fa-rotate-left"></i> Voltar </a>
+        <a class="btn btn-success" href="/listarCidade"><i class="fa-solid fa-list-ol"></i> Listar Cidades</a>
+
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+        $('#cep').mask('99.999-999');
+    });
+</script>
+
+</script>
+</body>
+</html>
