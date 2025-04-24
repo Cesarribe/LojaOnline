@@ -43,22 +43,47 @@
 
 
 <div class="container">
-    <form action="/salvarEstado" th:object="${estado}" method="POST">
+    <form action="/salvarProduto" th:object="${produto}" method="POST">
         <div class="form-group">
 
-            <label for="id">ID do Estado:</label>
+            <label>ID do Produto:</label>
             <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
 
-            <label for="nome">Nome do Estado:</label>
-            <input type="text" class="form-control" id="nome" th:field="*{nome}">
+            <label>Nome do Produto:</label>
+            <input type="text" class="form-control" th:field="*{nome}">
 
-            <label for="nome">Sigla:</label>
-            <input type="text" class="form-control" id="sigla" th:field="*{sigla}">
+            <label>Codigo de Barras:</label>
+            <input type="text" class="form-control" th:field="*{codigoBarras}">
+
+            <label>Unidade de Medida:</label>
+            <input type="text" class="form-control" th:field="*{unidadeMedida}">
+
+            <div class="row">
+                <div class="col">
+                    <label>Estoque:</label>
+                    <input type="number" class="form-control" th:field="*{estoque}">
+                </div>
+
+                <div class="col"><label>Preço de Custo:</label>
+                    <input type="number" class="form-control" th:field="*{precoCusto}"></div>
+
+                <div class="col"><label>Preço de Venda:</label>
+                    <input type="number" class="form-control" th:field="*{precoVenda}"></div>
+
+                <div class="col">  <label>Lucro:</label>
+                    <input type="number" class="form-control" th:field="*{lucro}"></div>
+
+                <div class="col"><label>Margem de Lucro:</label>
+                    <input type="number" class="form-control" th:field="*{margemLucro}">
+                </div>
+
+            </div>
+
         </div>
 
         <a><button type="submit" class="btn btn-primary"> <i class="fa-solid fa-floppy-disk"></i> Salvar </button></a>
         <a class="btn btn-danger" href="/administrativo"><i class="fa-solid fa-rotate-left"></i> Voltar </a>
-        <a class="btn btn-success" href="/listarEstado"><i class="fa-solid fa-list-ol"></i> Listar Estados</a>
+        <a class="btn btn-success" href="/listarProduto"><i class="fa-solid fa-list-ol"></i> Listar Produtos</a>
 
     </form>
 </div>
