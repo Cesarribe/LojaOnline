@@ -15,11 +15,6 @@ public class Produto implements Serializable {
     private String nome;
     private String codigoBarras;
     private String unidadeMedida;
-    private String estoque;
-    private String precoCusto;
-    private String precoVenda;
-    private String lucro;
-    private String margemLucro;
 
     public long getId() {
         return id;
@@ -53,43 +48,49 @@ public class Produto implements Serializable {
         this.unidadeMedida = unidadeMedida;
     }
 
-    public String getEstoque() {
+    public Double getEstoque() {
         return estoque;
     }
 
-    public void setEstoque(String estoque) {
+    public void setEstoque(Double estoque) {
         this.estoque = estoque;
     }
 
-    public String getPrecoCusto() {
+    public Double getPrecoCusto() {
         return precoCusto;
     }
 
-    public void setPrecoCusto(String precoCusto) {
+    public void setPrecoCusto(Double precoCusto) {
         this.precoCusto = precoCusto;
     }
 
-    public String getPrecoVenda() {
+    public Double getPrecoVenda() {
         return precoVenda;
     }
 
-    public void setPrecoVenda(String precoVenda) {
+    public void setPrecoVenda(Double precoVenda) {
         this.precoVenda = precoVenda;
     }
 
-    public String getLucro() {
+    public Double getLucro() {
         return lucro;
     }
 
-    public void setLucro(String lucro) {
+    public void setLucro(Double lucro) {
         this.lucro = lucro;
     }
 
-    public String getMargemLucro() {
+    public Double getMargemLucro() {
         return margemLucro;
     }
 
-    public void setMargemLucro(String margemLucro) {
+    public void setMargemLucro(Double margemLucro) {
         this.margemLucro = margemLucro;
     }
+
+    private Double estoque = 0.00;
+    private Double precoCusto = 0.00;
+    private Double precoVenda = 0.00;
+    private Double lucro = 0.00;
+    private Double margemLucro = 0.00;
 }

@@ -3,7 +3,6 @@ package com.csribeiro.sistema.modelos;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class ItemEntrada implements Serializable {
@@ -15,9 +14,18 @@ public class ItemEntrada implements Serializable {
     private long id;
      private Double quantidade;
      private Double valor;
+     private Double precoVenda;
 
-    public Double getValorCusto() {
-        return valorCusto;
+    public Double getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(Double precoVenda) {
+        this.precoVenda = precoVenda;
+    }
+
+    public String getValorCusto() {
+        return String.valueOf(valorCusto);
     }
 
     public void setValorCusto(Double valorCusto) {

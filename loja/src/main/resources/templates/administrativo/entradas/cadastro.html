@@ -46,71 +46,84 @@
     <form action="/salvarEntrada" th:object="${entrada}" method="POST">
         <div class="form-group">
 
-            <label>ID:</label>
-            <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
 
-            <label>Observação:</label>
-            <input type="text" class="form-control" id="nome" th:field="*{obs}">
+            <div class="row" th:object="${itemEntrada}">
+                <div class="col">
+                    <label>Produto:</label>
+                    <select th:field="*{produto}" class="form-control">
+                        <option th:each="est : ${listaProdutos}" th:value="${est.id}" th:text="${est.nome}"></option>
+                    </select>
+                </div>
 
-            <label>Funcionário:</label>
-            <select th:field="*{funcionario}" class="form-control">
-                <option th:each="est : ${listaFuncionarios}" th:value="${est.id}" th:text="${est.nome}"></option>
-                </select>
+                <div class="col"> <label>Quantidade Total:</label>
+                    <input type="text" class="form-control" th:field="*{quantidade}">
 
-            <label>Fornecedores:</label>
-            <select th:field="*{fornecedor}" class="form-control">
-                <option th:each="est : ${listaFornecedores}" th:value="${est.id}" th:text="${est.nome}"></option>
-            </select>
+                </div>
 
-            <label>Valor Total:</label>
-            <input type="text" readonly required class="form-control" th:field="*{valorTotal}">
+                <div class="col"> <label>Valor de Custo:</label>
+                    <input type="text" th:field="*{precoVenda}" />
+                </div>
 
-            <label>Quantidade Total:</label>
-            <input type="text" readonly required class="form-control" th:field="*{quantidadeTotal}">
-
-            <div class="form-row" th:object="${itemEntrada}">
-
-                <label>Produto:</label>
-                <select th:field="*{produto}" class="form-control">
-                    <option th:each="est : ${listaProdutos}" th:value="${est.id}" th:text="${est.nome}"></option>
-                </select>
-
-                <label>Quantidade Total:</label>
-                <input type="text" class="form-control" th:field="*{quantidade}">
-
-                <label>Valor de Custo:</label>
-                <input type="text" class="form-control" th:field="*{valorCusto}">
-
-                <label>Valor de Venda:</label>
-                <input type="text" class="form-control" th:field="*{valor}">
-
-                <button name="acao" th:value="itens" type="submit" class="btn btn-primary">Adicionar</button>
+                <div class="col">   <label>Valor de Venda:</label>
+                    <input type="text" class="form-control" th:field="*{valor}">
+                </div>
+                <div class="col">
+                    <button name="acao" th:value="itens" style="margin-top: 10px" type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
 
             </div>
+            <div class="row">
+                <div class="col"><label>ID:</label>
+                    <input type="text" readonly="true" class="form-control" id="id" th:field="*{id}">
 
-            <table class="table" id="tabela">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Produto</th>
-                    <th>Valor Custo</th>
-                    <th>Valor Venda</th>
-                    <th>Ação</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="itemEntrada : ${listaItemEntrada}">
-                    <td th:text="${itemEntrada.id}"></td>
-                    <td th:text="${itemEntrada.produto}"></td>
-                    <td th:text="${itemEntrada.valorCusto}"></td>
-                    <td th:text="${itemEntrada.valor}"></td>
-                    <td colspan="2">
-                        <a th:href="@{/editarEentrada/{id}(id=${entrada.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a th:href="@{/removerEntrada/{id}(id=${entrada.id})}"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                    <label>Observação:</label>
+                    <input type="text" class="form-control" id="nome" th:field="*{obs}">
+
+                    <label>Funcionário:</label>
+                    <select th:field="*{funcionario}" class="form-control">
+                        <option th:each="est : ${listaFuncionarios}" th:value="${est.id}" th:text="${est.nome}"></option>
+                    </select>
+
+                    <label>Fornecedores:</label>
+                    <select th:field="*{fornecedor}" class="form-control">
+                        <option th:each="est : ${listaFornecedores}" th:value="${est.id}" th:text="${est.nome}"></option>
+                    </select>
+
+                    <label>Quantidade Total:</label>
+                    <input type="text" readonly required class="form-control" th:field="*{quantidadeTotal}">
+
+                    <label>Valor Total:</label>
+                    <input type="text" readonly required class="form-control" th:field="*{valorTotal}">
+                </div>
+
+
+                <div class="col">
+                    <table class="table table-striped" id="tabela" style="margin-top:30px">
+                        <thead class="bg-primary" style="color:white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>Valor Custo</th>
+                            <th>Valor Venda</th>
+                            <th>Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="itemEntrada : ${listaItemEntrada}">
+                            <td th:text="${itemEntrada.id}"></td>
+                            <td th:text="${itemEntrada.produto}"></td>
+                            <td th:text="${itemEntrada.valorCusto}"></td>
+                            <td th:text="${itemEntrada.valor}"></td>
+                            <td colspan="2">
+                                <a th:href="@{/editarEentrada/{id}(id=${entrada.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a th:href="@{/removerEntrada/{id}(id=${entrada.id})}"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 
         </div>
 
